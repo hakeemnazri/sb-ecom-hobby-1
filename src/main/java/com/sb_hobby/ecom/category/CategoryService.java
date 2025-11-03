@@ -1,4 +1,4 @@
 package com.sb_hobby.ecom.category;
 
-public class CategoryService {
+public interface CategoryService {
 }

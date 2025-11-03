@@ -5,6 +5,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
+      POSTGRES_DB: hobby-ecom
     volumes:
       - postgres:/data/postgres
       - ./init-multi-db.sql:/docker-entrypoint-initdb.d/init.sql
