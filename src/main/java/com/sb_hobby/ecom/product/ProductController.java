@@ -14,7 +14,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/public/products")
+    @GetMapping("/public/product")
     public ResponseEntity<ProductResponse> getAllProducts(
             @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
@@ -28,6 +28,7 @@ public class ProductController {
         return new ResponseEntity<>(allProducts, HttpStatus.OK);
     }
 
+    @GetMapping("/public/category/{categoryId}/product")
     public ResponseEntity<ProductResponse> getProductsByCategory(
             @RequestParam(name = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(name = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,

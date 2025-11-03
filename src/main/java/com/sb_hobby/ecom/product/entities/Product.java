@@ -9,9 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity()
+@Entity(name = "products")
+@Table(name = "products")
 @ToString
-@Table()
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
