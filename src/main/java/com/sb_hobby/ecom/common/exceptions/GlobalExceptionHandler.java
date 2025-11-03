@@ -1,5 +1,6 @@
 package com.sb_hobby.ecom.common.exceptions;
 
+import com.sb_hobby.ecom.common.DTOs.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -25,5 +26,7 @@ public class GlobalExceptionHandler{
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<>
+    public ResponseEntity<APIResponse> responseNotFoundException(){
+
+    }
 }
