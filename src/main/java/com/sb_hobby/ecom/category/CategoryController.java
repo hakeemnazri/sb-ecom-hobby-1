@@ -2,7 +2,7 @@ package com.sb_hobby.ecom.category;
 
 import com.sb_hobby.ecom.category.DTO.CategoryDTO;
 import com.sb_hobby.ecom.category.DTO.CategoryResponse;
-import com.sb_hobby.ecom.common.AppConstants;
+import com.sb_hobby.ecom.common.constants.AppConstants;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

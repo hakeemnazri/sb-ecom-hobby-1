@@ -1,4 +1,4 @@
-package com.sb_hobby.ecom.common;
+package com.sb_hobby.ecom.common.constants;
 
 public class AppConstants {
     public static final String PAGE_NUMBER = "0";
