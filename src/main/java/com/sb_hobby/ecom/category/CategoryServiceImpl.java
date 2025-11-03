@@ -54,7 +54,7 @@ public class CategoryServiceImpl implements CategoryService{
         Optional<Category> optionalCategory = categoryRepository.findByCategoryName(category.getCategoryName());
 
         if(optionalCategory.isPresent()){
-            throw  new APIException("Category with the name" + category.getCategoryName() +  "is already exists!");
+            throw  new APIException("Category with the name" + category.getCategoryName() +  " already exists!");
         }
 
         Category savedCategory = categoryRepository.save(category);
