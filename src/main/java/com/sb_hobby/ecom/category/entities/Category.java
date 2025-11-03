@@ -1,16 +1,17 @@
 package com.sb_hobby.ecom.category.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.sb_hobby.ecom.product.entities.Product;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "categories")
+import java.util.List;
+
+@Entity()
+//@Entity(name = "categories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,6 @@ public class Category {
     @Size(min = 5, message = "Category name must contain at least 5 characters")
     private String categoryName;
 
-//    TODO: add products
-//    private List<Product> products;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
 }
