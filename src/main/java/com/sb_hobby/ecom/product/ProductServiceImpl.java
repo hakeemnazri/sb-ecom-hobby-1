@@ -2,7 +2,9 @@ package com.sb_hobby.ecom.product;
 
 import com.sb_hobby.ecom.product.DTO.ProductDTO;
 import com.sb_hobby.ecom.product.DTO.ProductResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductServiceImpl implements ProductService{
     @Override
     public ProductDTO createProduct(Long categoryId, ProductDTO productDTO) {
