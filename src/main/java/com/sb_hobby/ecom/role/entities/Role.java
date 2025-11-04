@@ -6,10 +6,10 @@ import lombok.*;
 
 @Entity
 @Table(name = "roles")
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
 
     @Id

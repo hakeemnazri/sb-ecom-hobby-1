@@ -37,7 +37,6 @@ public class Order {
 
     @NotNull(message = "Total amount is required")
     @DecimalMin(value = "0.0", inclusive = false, message = "Total amount must be greater than 0")
-    @Digits(integer = 10, fraction = 2, message = "Total amount must have at most 10 integer digits and 2 decimal places")
     private Double totalAmount;
 
     @NotBlank(message = "Order status is required")

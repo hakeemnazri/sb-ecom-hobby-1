@@ -28,9 +28,8 @@ public class Cart {
 
     @NotNull(message = "Total price cannot be null")
     @DecimalMin(value = "0.0", inclusive = true, message = "Total price cannot be negative")
-    @Digits(integer = 10, fraction = 2, message = "Total price must have at most 10 integer digits and 2 decimal places")
-    @Column(name = "total_price", precision = 12, scale = 2)
-    private Double totalPrice = 0.0;
+    @Column(name = "total_price")
+    private Double totalPrice;
 
     @OneToOne
     @JoinColumn(name = "user_id")
