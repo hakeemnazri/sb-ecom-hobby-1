@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,7 @@ public class ProductServiceImpl implements ProductService{
     public ProductResponse getAllProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder, String keyword, String category) {
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
-        PageRequest pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+        Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
 
         String cleanKeyword = (keyword == null || keyword.trim().isEmpty()) ? null : "%" + keyword + "%";
         String cleanCategory = (category == null || category.trim().isEmpty()) ? null : category;
@@ -83,26 +84,92 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductResponse searchByCategory(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder, Long categoryId) {
-        return null;
+
+        Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+        Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+
+        Page<Product> pageableProducts = productRepository.findAllByCategory(pageDetails, categoryId);
+
+        List<Product> products = pageableProducts.getContent();
+
+        List<ProductDTO> productDtos = products.stream().map(p -> modelMapper.map(p, ProductDTO.class)).toList();
+
+        ProductResponse productResponse = ProductResponse.builder()
+                .totalPages(pageableProducts.getTotalPages())
+                .totalElements(pageableProducts.getTotalElements())
+                .lastPage(pageableProducts.isLast())
+                .pageNumber(pageableProducts.getNumber())
+                .pageSize(pageableProducts.getSize())
+                .content(productDtos)
+                .build();
+
+        return productResponse;
     }
 
     @Override
     public ProductResponse searchByKeyword(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder, String keyword) {
-        return null;
+
+        Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+        Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+
+        Page<Product> pageableProducts = productRepository.findAllByKeyword(pageDetails, "%" + keyword + "%");
+
+        List<Product> products = pageableProducts.getContent();
+
+        List<ProductDTO> productDtos = products.stream().map(p -> modelMapper.map(p, ProductDTO.class)).toList();
+
+        ProductResponse productResponse = ProductResponse.builder()
+                .lastPage(pageableProducts.isLast())
+                .totalPages(pageableProducts.getTotalPages())
+                .totalElements(pageableProducts.getTotalElements())
+                .pageSize(pageableProducts.getSize())
+                .pageNumber(pageableProducts.getNumber())
+                .content(productDtos)
+                .build();
+
+        return productResponse;
     }
 
     @Override
     public ProductDTO updateProduct(Long productId, ProductDTO productDTO) {
-        return null;
+        Product productFromDb = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
+
+        Product product = modelMapper.map(productDTO, Product.class);
+
+        productFromDb.setProductName(product.getProductName());
+        productFromDb.setCategory(product.getCategory());
+        productFromDb.setDiscount(product.getDiscount());
+        productFromDb.setPrice(product.getPrice());
+        productFromDb.setSpecialPrice(product.getSpecialPrice());
+        productFromDb.setDescription(product.getDescription());
+        productFromDb.setQuantity(product.getQuantity());
+
+        Product savedProduct = productRepository.save(productFromDb);
+
+        //TODO: Add Cart
+
+        ProductDTO savedProductDto = modelMapper.map(savedProduct, ProductDTO.class);
+
+        return savedProductDto;
     }
 
     @Override
     public ProductDTO deleteProduct(Long productId) {
-        return null;
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
+
+        //TODO: CART
+
+        productRepository.delete(product);
+
+        return modelMapper.map(product, ProductDTO.class);
     }
 
     @Override
     public ProductResponse getAllProductsForAdmin(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
+
+        //TODO: add authUtils
         return null;
     }
 

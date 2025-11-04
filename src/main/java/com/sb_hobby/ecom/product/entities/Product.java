@@ -1,6 +1,7 @@
 package com.sb_hobby.ecom.product.entities;
 
 import com.sb_hobby.ecom.category.entities.Category;
+import com.sb_hobby.ecom.user.entities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -37,5 +38,9 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-//    TODO: Users & cart relationship
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private User users;
+
+//    TODO: cart relationship
 }
