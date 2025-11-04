@@ -1,6 +1,7 @@
 package com.sb_hobby.ecom.order.entities;
 
 import com.sb_hobby.ecom.address.entities.Address;
+import com.sb_hobby.ecom.orderItem.entities.OrderItem;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -43,5 +46,15 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+    //TODO: Payment
 
 }
