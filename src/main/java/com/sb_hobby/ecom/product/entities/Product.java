@@ -5,15 +5,13 @@ import com.sb_hobby.ecom.user.entities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "products")
 @ToString
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
