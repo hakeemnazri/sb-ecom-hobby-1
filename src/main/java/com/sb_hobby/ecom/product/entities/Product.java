@@ -1,11 +1,15 @@
 package com.sb_hobby.ecom.product.entities;
 
+import com.sb_hobby.ecom.cartItem.entities.CartItem;
 import com.sb_hobby.ecom.category.entities.Category;
 import com.sb_hobby.ecom.user.entities.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -40,5 +44,11 @@ public class Product {
     @JoinColumn(name = "seller_id")
     private User users;
 
-//    TODO: cart relationship
+    @OneToMany(
+            mappedBy = "product",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "cart_items")
+    private List<CartItem> cartItems = new ArrayList<>();
 }
