@@ -2,6 +2,7 @@ package com.sb_hobby.ecom.order.entities;
 
 import com.sb_hobby.ecom.address.entities.Address;
 import com.sb_hobby.ecom.orderItem.entities.OrderItem;
+import com.sb_hobby.ecom.payment.entities.Payment;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -55,6 +56,8 @@ public class Order {
     )
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    //TODO: Payment
+    @OneToOne
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 
 }
