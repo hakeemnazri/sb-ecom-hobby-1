@@ -1,6 +1,7 @@
 package com.sb_hobby.ecom.user.entities;
 
 import com.sb_hobby.ecom.address.entities.Address;
+import com.sb_hobby.ecom.cart.entities.Cart;
 import com.sb_hobby.ecom.product.entities.Product;
 import com.sb_hobby.ecom.role.entities.Role;
 import jakarta.persistence.*;
@@ -64,9 +65,15 @@ public class User {
     @OneToMany(
             mappedBy = "user",
             cascade = {CascadeType.ALL},
+            orphanRemoval = true,
             fetch = FetchType.EAGER
     )
     private List<Address> addresses = new ArrayList<>();
 
-    //TODO: cart
+    @OneToOne(
+            mappedBy = "user",
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true
+    )
+    private Cart cart;
 }
