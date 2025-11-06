@@ -3,6 +3,7 @@ package com.sb_hobby.ecom.product;
 import com.sb_hobby.ecom.common.constants.AppConstants;
 import com.sb_hobby.ecom.product.DTO.ProductDTO;
 import com.sb_hobby.ecom.product.DTO.ProductResponse;
+import com.sb_hobby.ecom.product.interfaces.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.sb_hobby.ecom.product;
+package com.sb_hobby.ecom.product.interfaces;
 
 import com.sb_hobby.ecom.product.DTO.ProductDTO;
 import com.sb_hobby.ecom.product.DTO.ProductResponse;

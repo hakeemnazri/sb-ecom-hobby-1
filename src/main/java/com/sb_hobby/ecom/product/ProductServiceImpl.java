@@ -7,6 +7,7 @@ import com.sb_hobby.ecom.common.exceptions.ResourceNotFoundException;
 import com.sb_hobby.ecom.product.DTO.ProductDTO;
 import com.sb_hobby.ecom.product.DTO.ProductResponse;
 import com.sb_hobby.ecom.product.entities.Product;
+import com.sb_hobby.ecom.product.interfaces.ProductService;
 import com.sb_hobby.ecom.product.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     CategoryRepository categoryRepository;

@@ -1,4 +1,4 @@
-package com.sb_hobby.ecom.category;
+package com.sb_hobby.ecom.category.interfaces;
 
 import com.sb_hobby.ecom.category.DTO.CategoryDTO;
 import com.sb_hobby.ecom.category.DTO.CategoryResponse;

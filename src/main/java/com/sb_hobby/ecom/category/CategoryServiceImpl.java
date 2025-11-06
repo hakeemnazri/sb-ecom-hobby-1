@@ -3,6 +3,7 @@ package com.sb_hobby.ecom.category;
 import com.sb_hobby.ecom.category.DTO.CategoryDTO;
 import com.sb_hobby.ecom.category.DTO.CategoryResponse;
 import com.sb_hobby.ecom.category.entities.Category;
+import com.sb_hobby.ecom.category.interfaces.CategoryService;
 import com.sb_hobby.ecom.category.repositories.CategoryRepository;
 import com.sb_hobby.ecom.common.exceptions.APIException;
 import com.sb_hobby.ecom.common.exceptions.ResourceNotFoundException;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
